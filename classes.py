@@ -74,7 +74,6 @@ Prt.pRotate(6,'counterwise')
 Prt.pRotate(8,'counterwise')
 Prt.pRotate(2,'clockwise')
 Prt.pRotate(5,'counterwise')
-#doom
 Prt.pRotate(4,'clockwise')
 
 Grd = Grid(d,N)
