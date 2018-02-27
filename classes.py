@@ -83,3 +83,32 @@ Grd.updateGrid()
 print(Grd.getGrid())
 
 print(Prt.posArray)
+
+#######################################
+#mulig endring: endre posArray fra dx2 til 2xd
+################ tar inn 2xd istedenfor dx2###############
+
+"""
+def updateGrid2(self):
+        self.grid[self.grid > 0] = 0
+        pos = self.prot.posArray
+        for i in range(len(pos[0])):
+            self.grid[pos[0,i],pos[1,i]] = i+1
+            
+def pRotate2(self,pivot, direction):
+        if direction == 'counterwise':
+            A = array([[0, -1], [1, 0]])
+        elif direction == 'clockwise':
+            A = array([[0,1],[-1,0]])
+        #deler opp posArray i tre deler, prepivot[0], pivot[1] og postpivot[2]
+        temp = hsplit(self.posArray,array([pivot-1,pivot]))
+        if pivot > self.node: #pivotmonomer større enn noden
+            temp[2] -= temp[1]
+            temp[2] = A@temp[2]
+            temp[2] += temp[1]
+        elif pivot < self.node: #pivotmonomer mindre enn noden
+            temp[0] -= temp[1]
+            temp[0] = A@temp[0]
+            temp[0] += temp[1]
+        self.posArray = hstack([temp[0], temp[1], temp[2]])
+       """
