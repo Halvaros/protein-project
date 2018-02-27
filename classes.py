@@ -111,4 +111,8 @@ def pRotate2(self,pivot, direction):
             temp[0] = A@temp[0]
             temp[0] += temp[1]
         self.posArray = hstack([temp[0], temp[1], temp[2]])
-       """
+       
+def legalTwist2(self,newArray):
+        return unique(newArray, axis = 1).shape == newArray.shape
+
+"""
