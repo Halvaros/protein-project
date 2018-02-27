@@ -56,16 +56,17 @@ class Grid:
     """def getProt(self):
         return 
     def setGrid(self):
-        return 
+        return
+    """
     def getGrid(self):
-        return self.grid"""
+        return self.grid
 
 #utility
 def d(a):
     if a == 1:
         return 'counterwise'
     return 'clockwise'
-
+"""
 N = 12
 d = 10
 Prt = Protein(d,N)
@@ -84,35 +85,4 @@ Grd.updateGrid()
 print(Grd.getGrid())
 
 print(Prt.posArray)
-
 """
-for i in range(100):
-    print(randint(0,1))
-    ja = randint(1,10)
-    da = direction(randint(0,1))
-    print(ja)
-    print(da)
-    Prt.pRotate(ja,da)
-    Grd.updateGrid()
-    print(Grd.getGrid())"""
-
-
-#plt.scatter(random.rand(20), random.rand(20), color=array(colors)[labels])
-"""
-if pivot > self.node: #placeholder
-            temp = self.posArray[pivot:] - self.posArray[pivot - 1]
-        else:
-            temp = self.posArray[:pivot] - self.posArray[pivot - 1]
-        temp = (A@temp.transpose()).transpose()
-        temp += self.posArray[pivot - 1]
-        self.posArray = vstack((self.posArray[:pivot], temp))
-        else:
-            temp = (A@temp.transpose()).transpose()
-            temp += self.posArray[pivot - 1]
-            self.posArray = vstack((temp,self.posArray[pivot:]))
-                #rotation matrix
-                #delta vector
-                #clockwise"""  
-                
-"""for i in np.arange(temp.size):
-            temp[i] -= pivottemp"""
