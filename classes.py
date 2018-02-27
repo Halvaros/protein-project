@@ -14,7 +14,7 @@ class Protein:
         self.d= int(p_length)
         self.N= int(g_size)
         self.node = self.d//2
-        self.posArray = array([[self.N/2,i] for i in range((self.N-self.d)//2, (self.N+self.d)//2)],dtype = int) 
+        self.posArray = array([[self.N/2,i] for i in range((self.N-self.d)//2, (self.N+self.d)//2)],dtype = int)#.transpose()
     
     def pRotate(self,pivot, direction):
         if direction == 'counterwise':
