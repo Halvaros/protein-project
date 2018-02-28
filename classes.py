@@ -83,3 +83,4 @@ Grd.updateGrid()
 print(Grd.getGrid())
 
 print(Prt.posArray)
+print("test")
