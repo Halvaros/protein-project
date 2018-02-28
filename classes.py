@@ -108,36 +108,3 @@ print(Prt.getU(Prt.posArray))
 
 print(Prt.legalTwist(Prt.posArray))
 """
-
-
-################ tar inn 2xd istedenfor dx2###############
-"""
-def updateGrid(self):
-        self.grid[self.grid > 0] = 0
-        pos = self.prot.posArray
-        for i in range(len(pos)):
-            self.grid[pos[i,0],pos[i,1]] = i+1
-
-def legalTwist(self,newArray):
-        #print(unique(newArray.transpose(), axis = 1).shape)
-        #print(newArray.transpose().shape)
-        return unique(newArray.transpose(), axis = 1).shape == newArray.transpose().shape
-
- def pRotate(self,pivot, direction):
-        if direction == 'counterwise':
-            A = array([[0, -1], [1, 0]])
-        elif direction == 'clockwise':
-            A = array([[0,1],[-1,0]])
-        #deler opp posArray i tre deler, prepivot[0], pivot[1] og postpivot[2]
-        temp = vsplit(self.posArray,array([pivot-1,pivot]))
-        if pivot > self.node: #pivotmonomer større enn noden
-            temp[2] -= temp[1]
-            #hvis pivot høyere enn noden, roterer ---*--- <-'høyre-hale'
-            temp[2] = (A@temp[2].transpose()).transpose()
-            temp[2] += temp[1]
-        elif pivot < self.node: #pivotmonomer mindre enn noden
-            temp[0] -= temp[1]
-            temp[0] = (A@temp[0].transpose()).transpose()
-            temp[0] += temp[1]
-        self.posArray = vstack([temp[0], temp[1], temp[2]])
-    """
