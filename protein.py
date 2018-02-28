@@ -16,7 +16,7 @@ from numpy import *
 import matplotlib.pyplot as plt
 from grid import Grid
 
-T = 1
+T = 0
 T_end = 5000
 N_T = 100
 
