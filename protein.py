@@ -35,13 +35,12 @@ class Protein:
         #trenger ikke være symm i vårt tilfelle
         
     def pRotate(self,pivot, direction):
-        posCopy = self.posArray.copy()
         if direction == 'counterwise':
             A = array([[0, -1], [1, 0]])
         elif direction == 'clockwise':
             A = array([[0,1],[-1,0]])
         #deler opp posArray i tre deler, prepivot[0], pivot[1] og postpivot[2]
-        temp = hsplit(posCopy,array([pivot-1,pivot]))
+        temp = hsplit(self.posArray.copy(),array([pivot-1,pivot]))
         if pivot > self.node: #pivotmonomer større enn noden
             temp[2] -= temp[1]
             temp[2] = A@temp[2]
@@ -84,7 +83,7 @@ class Protein:
                  self.U = tryEnergy
                  
     def getPos(self):
-        return self.posArray
+        return self.posArray.copy()
     
 
     
