@@ -34,24 +34,35 @@ Prt.pRotate(4,'clockwise')
 """
 #current workbench
 
-
+"""
+#folding 
 for i in range(100):
     Prt.tryRotate()
     Grid.update()
     plt.imshow(Grid.getGrid());
     #plt.colorbar()
     plt.show()
-    
-    
-
-print(Prt.U)
-
-print(Prt.posArray)
 """
 
+#easy plot
+plt.imshow(Grid.getGrid());
+plt.colorbar()
+plt.show()
 
-print(Prt.getU(Prt.posArray))
-print(Prt.getU(Prt.posArray))
-print(Prt.getU(Prt.posArray))
-"""
-#print(Prt.legalTwist(Prt.posArray))
+#plott
+arr = Grid.getGrid()
+plt.plot()
+X, Y = arr.nonzero()  #Gir to matriser som sammen gir indeksene til non-zero elements
+                      #X=[4 4 4 5 5 6 6 6] Y=[4 5 6 4 6 4 5 6] (origo oppe til venstre)
+
+#Any or all of X, Y, s, and c may be masked arrays, in which case all masks will be combined and only unmasked points will be plotted.
+
+plt.scatter(Y, X, c=arr[X, Y], s=100, marker="o", cmap=plt.cm.viridis) #Marker size is scaled by s and marker color is mapped to c.
+plt.axis([0, arr.shape[1], 0, arr.shape[0]])
+plt.gca().invert_yaxis()
+print(arr[X,Y])
+print(X,Y)
+#plt.grid()
+#plt.rcParams['axes.axisbelow'] = True
+plt.show()
+
