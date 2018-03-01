@@ -24,11 +24,12 @@ class Protein:
     kb = 1.38064852e-23
     #methods
     def __init__(self,p_length = 0, g_size = 0):
-        self.d= int(p_length)
-        self.N= int(g_size)
-        self.node = self.d//2
+        self.d= int(p_length)                           #antall monomerer
+        self.N= int(g_size)                             #størrelse grid
+        self.node = self.d//2                                #noden
         self.posArray = array([[self.N/2,i] for i in range((self.N-self.d)//2, (self.N+self.d)//2)],dtype = int).T
         self.U = 0
+        self.L = int(p_length)                      #lengden til et bestemt protein
         self.T = T
         self.U_ij = random.random_sample((self.d,self.d))*(-3.47e-21 + 10.4e-21) - 10.4e-21
         #trenger ikke være symm i vårt tilfelle
@@ -53,6 +54,18 @@ class Protein:
     def legalTwist(self,newArray):
         return unique(newArray, axis = 1).shape == newArray.shape
     
+    def getUL(self, newArray):
+        U = 0
+        L = 0
+        for i in range(newArray.T.shape[0]-2):          #utelater de siste to monomerene
+            for j in range(i+2,newArray.T.shape[0]):    #utelater de to første; seg selv og nærmeste nabo
+                relDist = linalg.norm(newArray.T[j] - newArray.T[i],2)
+                if relDist == 1:
+                    U += self.U_ij[i,j]                 #legger U(r_i - r_j), der j>i (upper triangular)
+                if relDist > L:                           
+                    L = relDist                         #finner største relative avstand mellom to monomerer
+        return U, L
+    """
     def getU(self,newArray):
         U = 0
         for i in range(newArray.T.shape[0]-2): #utelater de siste to monomerene
@@ -60,6 +73,7 @@ class Protein:
                 if linalg.norm(newArray.T[j] - newArray.T[i],1) == 1:
                     U += self.U_ij[i,j] #legger U(r_i - r_j), der j>i (upper triangular)
         return U
+    """
     
     def checkU(self,newEnergy):
         if self.U > newEnergy:
@@ -69,12 +83,13 @@ class Protein:
     def tryRotate(self):
         piv = random.randint(2,self.d) #utelukker endemonomerer
         rot= dire(random.randint(0,2))
-        tryArray = self.pRotate(piv,rot)
-        if self.legalTwist(tryArray):
-            tryEnergy = self.getU(tryArray)
-            if self.checkU(tryEnergy):
-                 self.posArray = tryArray
-                 self.U = tryEnergy
+        newArray = self.pRotate(piv,rot)
+        if self.legalTwist(newArray):
+            newEnergy, newLength = self.getUL(newArray)
+            if self.checkU(newEnergy):
+                self.posArray = newArray
+                self.U = newEnergy
+                self.L = newLength
                  
     def getPos(self):
         return self.posArray.copy()
