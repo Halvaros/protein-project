@@ -6,6 +6,7 @@ Created on Wed Feb 28 16:55:17 2018
 """
 from numpy import *
 import matplotlib.pyplot as plt
+from time import sleep
 
 class Grid:
     # constructor
@@ -34,6 +35,10 @@ class Grid:
 
     def __call__(self):
         plt.plot()
+        plt.clf()  #clean slate
+        plt.ion()  #interaktiv modus
+        plt.show() #tegner vindu
+
         X, Y = self.grid.nonzero()  # Gir to matriser som sammen gir indeksene til non-zero elements
         # X=[4 4 4 5 5 6 6 6] Y=[4 5 6 4 6 4 5 6] (origo oppe til venstre)
 
@@ -44,7 +49,9 @@ class Grid:
         plt.axis([0, self.grid.shape[1], 0, self.grid.shape[0]])
         plt.gca().invert_yaxis()
         # plt.rcParams['axes.axisbelow'] = True
-        plt.show()
+
+        plt.draw()  #oppdaterer vindu
+        plt.pause(000.1)
 
     """def getProt(self):
         return 

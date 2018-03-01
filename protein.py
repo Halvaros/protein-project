@@ -15,24 +15,20 @@ from numpy import *
 # from random import randint
 import matplotlib.pyplot as plt
 from grid import Grid
-
-T = 1E-2
-T_end = 5000
 N_T = 100
-
 
 class Protein:
     kb = 1.38064852e-23
 
     # methods
-    def __init__(self, p_length=0, g_size=0):
+    def __init__(self, p_length=0, g_size=0,Temp=1E-2):
         self.d = int(p_length)
         self.N = int(g_size)
         self.node = self.d // 2
         self.posArray = array([[self.N / 2, i] for i in range((self.N - self.d) // 2, (self.N + self.d) // 2)],
                               dtype=int).T
-        self.U = 0
-        self.T = T
+        self.U=float(0)
+        self.T = Temp
         self.U_ij = random.random_sample((self.d, self.d)) * (-3.47e-21 + 10.4e-21) - 10.4e-21
         self.twists = 0
         # trenger ikke være symm i vårt tilfelle
@@ -81,7 +77,7 @@ class Protein:
             tryEnergy = self.getU(tryArray)
             if self.checkU(tryEnergy):
                 self.posArray = tryArray
-                self.U = tryEnergy
+                self.U+=tryEnergy
                 self.twists += 1
                 return True
 

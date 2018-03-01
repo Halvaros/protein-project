@@ -16,6 +16,8 @@ from protein import Protein
 from grid import Grid
 import matplotlib.pyplot as plt
 
+T = 1E-2
+T_end = 5000
 N = 16
 d = 10
 
@@ -24,7 +26,7 @@ def showIt(Prt,Grid):
     Grid.update()
     Grid()
 
-Prt = Protein(d,N)
+Prt = Protein(d,N,T)
 showIt(Prt,Grid)
 while Prt.twists<20:
     if Prt.tryRotate():
