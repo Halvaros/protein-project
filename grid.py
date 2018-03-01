@@ -25,7 +25,7 @@ class Grid:
     
     def getGrid(self):
         return self.grid
-
+    
     def showOff(self):
         plt.plot()
         X, Y = grid.nonzero()  # Gir to matriser som sammen gir indeksene til non-zero elements
@@ -39,6 +39,12 @@ class Grid:
         plt.gca().invert_yaxis()
         # plt.rcParams['axes.axisbelow'] = True
         plt.show()
+        
+    def easyPlot(self):
+        plt.imshow(self.getGrid());
+        #plt.colorbar()
+        plt.show()
+        
 
     
     """def getProt(self):
