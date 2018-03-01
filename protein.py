@@ -12,7 +12,6 @@ Created on Mon Feb 26 08:39:17 2018
 @author: HOS
 """
 from numpy import *
-#from random import randint
 import matplotlib.pyplot as plt
 from grid import Grid
 
@@ -51,8 +50,6 @@ class Protein:
             temp[0] += temp[1]
         return hstack([temp[0], temp[1], temp[2]])
         
-    
-   
     def legalTwist(self,newArray):
         return unique(newArray, axis = 1).shape == newArray.shape
     
@@ -67,13 +64,10 @@ class Protein:
     def checkU(self,newEnergy):
         if self.U > newEnergy:
             return True
-        if self.kb*self.T == 0:
-            return False
-        else:
-            return random.uniform() < exp(-(newEnergy - self.U)/(self.kb*self.T))
+        return random.uniform() < exp(-(newEnergy - self.U)/(self.kb*self.T)) #antar kb*T > 0
     
     def tryRotate(self):
-        piv = random.randint(1,self.d+1)
+        piv = random.randint(2,self.d) #utelukker endemonomerer
         rot= dire(random.randint(0,2))
         tryArray = self.pRotate(piv,rot)
         if self.legalTwist(tryArray):
@@ -84,8 +78,6 @@ class Protein:
                  
     def getPos(self):
         return self.posArray.copy()
-    
-
     
 #utility
 def dire(a):
