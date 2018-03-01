@@ -19,5 +19,5 @@ for i in range(30):
     Prt.tryRotate()
     Grid.update()
     #Grid.easyPlot()
-    Grid.ShowOff()
+    Grid.showOff()
 
