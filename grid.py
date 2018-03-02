@@ -51,7 +51,7 @@ class Grid:
         # plt.rcParams['axes.axisbelow'] = True
 
         plt.draw()  #oppdaterer vindu
-        plt.pause(000.1)
+        plt.pause(0.0001)
 
     """def getProt(self):
         return 

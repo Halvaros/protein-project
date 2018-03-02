@@ -92,7 +92,7 @@ class Protein:
                 self.U = newEnergy
                 self.L = newLength
                 self.twists += 1
-                return True
+            return True
         return False
 
     def getPos(self):

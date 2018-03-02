@@ -4,8 +4,8 @@ from grid import Grid
 import matplotlib.pyplot as plt
 
 
-def showIt(Prt, Grid):
-    Grid = Grid(d, gridN, Prt)
+def showIt(Grid):
+
     Grid.update()
     Grid()
 
@@ -18,10 +18,8 @@ gridN = 20
 N = 15
 dMax = 10000
 Nt = 10
-convergenceLimit = 200
 
-sArr = array([1])
-    #linspace(1E-4, 1E-2, 3)
+sArr = linspace(1E-4, 1E-2, 3)
 TArr = linspace(1, 1500, Nt)
 sDic = {}
 
@@ -35,9 +33,10 @@ for s in sArr:
         dArr[i] = d
         print(d)
         Prt = Protein(N, gridN, TArr[i])
+        Grid = Grid(d, gridN, Prt)
         for j in range(d):
             twist = Prt.tryRotate()
-            showIt(Prt,Grid)
+            showIt(Grid)
             while not twist:
                 twist = Prt.tryRotate()
             epsilon[i, j] = Prt.U
@@ -57,13 +56,3 @@ while Prt.twists < 20:
         showIt(Prt, Grid)
 """
 
-
-def twister():
-    Prt.tryRotate()
-    if twist:
-        totalE += Prt.U
-    else:
-        try:
-            twister()
-        except Exception:
-            return
