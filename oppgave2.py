@@ -52,7 +52,7 @@ TArr = linspace(1E-2, 1500, Nt)
 
 # Midlere E  og  L som funksjon av T
 # Gradient E som funksjon av T
-
+'''
 epsilon = zeros((Nt, dMax))
 L = zeros((Nt, dMax))
 dArr = zeros(Nt)
@@ -83,7 +83,7 @@ plotIt(TArr, L)
 TArr = linspace(1E-2, 1500, Nt - 1)
 plotIt(TArr, dEpsilon)
 plt.show()
-
+'''
 # Bindingsenergi for T=0K og T=500K
 '''
 
@@ -117,7 +117,7 @@ plt.show()
 '''
 
 # Midlere E ved T=0
-'''
+
 reps=20
 epsilon = zeros((reps, dMax))
 T=1E-2
@@ -135,4 +135,4 @@ epsilon = sum(epsilon, 1)
 epsilon =epsilon/d
 plotIt(arange(1,reps+1), epsilon)
 plt.show()
-'''
+
