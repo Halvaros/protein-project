@@ -7,6 +7,7 @@ Created on Wed Feb 28 16:55:17 2018
 from numpy import *
 import matplotlib.pyplot as plt
 from time import sleep
+import matplotlib as mpl
 
 class Grid:
     # constructor
@@ -49,6 +50,10 @@ class Grid:
         plt.axis([0, self.grid.shape[1], 0, self.grid.shape[0]])
         plt.gca().invert_yaxis()
         # plt.rcParams['axes.axisbelow'] = True
+
+        fig = plt.gcf()
+        DPI = fig.get_dpi()
+        fig.set_size_inches(640.0 / float(DPI), 476.0 / float(DPI))
 
         plt.draw()  #oppdaterer vindu
         plt.pause(0.0001)

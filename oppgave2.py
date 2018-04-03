@@ -42,17 +42,17 @@ def averageIt(arr, dArr):
 #################################################
 gridN = 20
 N = 15
-dMax = 10000
+dMax = 30000
 Nt = 20
 # s=1E-6 #for Nt=15
-s = 1E-6
+s = 1E-3
 # sArr = array([1E-6])  # linspace(1E-6, 1E-4, 3)
 TArr = linspace(1E-2, 1500, Nt)
 #################################################
 
 # Midlere E  og  L som funksjon av T
 # Gradient E som funksjon av T
-'''
+
 epsilon = zeros((Nt, dMax))
 L = zeros((Nt, dMax))
 dArr = zeros(Nt)
@@ -115,7 +115,7 @@ for i in range(len(TArr)):
     plt.plot(dArr,epsilon)
 plt.show()
 '''
-
+'''
 # Midlere E ved T=0
 
 reps=20
@@ -136,3 +136,4 @@ epsilon =epsilon/d
 plotIt(arange(1,reps+1), epsilon)
 plt.show()
 
+'''

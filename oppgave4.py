@@ -20,11 +20,21 @@ def legalTwist(protein):  # legal i forstanden gyldig struktur,
         twist = protein.tryRotate()
 
 
-def plotIt(X, Y, ax=None, T=None):
+def plotIt(X, Y, ax=None, T=None,i=0):
     if T == None:
-        plt.figure()
-        plt.plot(X, Y)
-        plt.grid()
+        if i==0:
+            plt.figure()
+            plt.title("Midlere potensiell energi ved nedkjølning, n=30")
+            plt.plot(X, Y, color='r')
+            plt.ylabel(r'$\langle E \rangle$')
+            plt.xlabel('$T$')
+
+        else:
+            plt.figure()
+            plt.title("Midlere diameter ved nedkjølning, n=30")
+            plt.plot(X, Y, color='b')
+            plt.ylabel(r'$\langle L \rangle$')
+            plt.xlabel('$T$')
     else:
         ax.set_title(str(T) + ' K')
         ax.set_ylim(auto=True)  # ([-3.47e-21,-10.4e-21])
@@ -39,11 +49,14 @@ def markerPlot(xMatrix, yMatrix):
     xMatrix = xMatrix.flatten()
     yMatrix = yMatrix.flatten()
     plt.figure()
-    plt.plot(xMatrix, yMatrix,linewidth=0.2)
-    #plt.plot(otherXMarkers,otherYmarkers,marker='o',color='y')
+    plt.title('Potensiell energi ved nedkjølning, n=30')
+    plt.plot(xMatrix, yMatrix,linewidth=0.1)
+    plt.plot(otherXMarkers,otherYmarkers,marker='o',color='r')
     #plt.plot(xMarkers, yMarkers,marker='o', color='g')
-    plt.plot((xMarkers+otherXMarkers)/2,(yMarkers+otherYmarkers)/2,marker='o',color="r")
-    plt.grid()
+    #plt.plot((xMarkers+otherXMarkers)/2,(yMarkers+otherYmarkers)/2,marker='o',color="r")
+    plt.ylabel(r'$E_s$',fontsize=11)
+    plt.xlabel('Antall tvister')
+    #plt.grid()
 
 
 def averageIt(arr, dArr):
@@ -55,10 +68,11 @@ def averageIt(arr, dArr):
 #################################################
 gridN = 20
 N = 15
-dMax = 10000
+dMax = 30000
 
+s = 1E-3
 # s=1E-6 #for Nt=15
-s = 1E-6
+
 # sArr = array([1E-6])  # linspace(1E-6, 1E-4, 3)
 
 #################################################
@@ -85,15 +99,17 @@ for i in range(Nt):
 
 # print(dArr)
 
-meanEpsilon = averageIt(epsilon.copy(), d)
-meanL = averageIt(L, d)
-markerPlot(dArr, epsilon)
-plotIt(TArr, meanEpsilon)
-plt.gca().invert_xaxis()
-plotIt(TArr, meanL)
-plt.gca().invert_xaxis()
+#meanEpsilon = averageIt(epsilon.copy(), d)
+#meanL = averageIt(L, d)
+#markerPlot(dArr, epsilon)
+#plotIt(TArr, meanEpsilon,i=0)
+#plt.gca().invert_xaxis()
+#plotIt(TArr, meanL,i=1)
+#plt.gca().invert_xaxis()
 
-#Grd = Grid(d, gridN, Prt)
-#while True:
-#    showIt(Grd)
-plt.show()
+Grd = Grid(d, gridN, Prt)
+while True:
+    showIt(Grd)
+
+#plt.savefig('Es30.eps', format='eps', dpi=1000)
+#plt.show()
